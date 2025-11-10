@@ -1,7 +1,10 @@
 
-<html>  
-    <body>
-        <form action='' method='get'>
+<php>
+    
+    
+</php>
+    <divy>
+        <form method='post'>
             <label for='title'>Title:</label>
             <input type="text" id="title" name="title" required><br>
             <label for='artist'>Artist:</label>
@@ -17,10 +20,23 @@
                     }
                 ?>
             </select><br>
-            <input type="submit" value="create">
-            <input type='hidden' name='view' value='created'>
+            <label for='genre'>Genre:</label>
+            <select id="genre" name="genre" required>
+                <?php 
+                    $genres = genres_all();
+                    foreach ($genres as $genre) {
+                        echo '<option value="' . htmlspecialchars($genre['id']) . '">' . htmlspecialchars($genre['name']) . '</option>';
+                    }
+                ?>
+            </select><br>
+            <input type="hidden" name="action" value="create">
+
+            <div class="col-12">
+                <button class="btn btn-success">Create</button>
+                <a href="?view=list" class="btn btn-outline-secondary">Cancel</a>
+            </div>
         </form>
 
-    </body>
-</html>
+     </div>
+
 

@@ -16,6 +16,11 @@
         return $stmt->fetchAll();
     }
 
+    function genres_all(): array {
+        $pdo = get_pdo();
+        $stmt = $pdo->query('SELECT * FROM `genres` ORDER BY name DESC');
+        return $stmt->fetchAll();
+    }
     // Insert a new record into the database
     function insert_record($title, $artist, $price, $format_id,$genre_id): void {
         // $title = "";
