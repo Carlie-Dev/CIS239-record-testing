@@ -29,6 +29,22 @@ require 'data/function.php';
                 break;
             case 'create':
                 include 'partials/records-form.php';
+                // filter_input() returns the filtered value if it succeeds, and false if it fails the filter or the variable doesn’t exist.
+                $title    = trim((string)(filter_input(INPUT_POST, 'title') ?? ''));
+                $artist   = trim((string)(filter_input(INPUT_POST, 'artist') ?? ''));
+                $price    = (float)(filter_input(INPUT_POST, 'price') ?? 0);
+                $format_id= (int)(filter_input(INPUT_POST, 'format') ?? 0);
+                $genre_id = (int)(filter_input(INPUT_POST, 'genre_id') ?? 0);
+
+    
+
+                if ($title && $artist && $genre_id) {
+                    insert_record($title, $artist, $price, $format_id, $genre_id);
+                    $view = 'created';
+                } else {
+                    $view = 'create'; // missing fields
+             }
+        
                 break;
             default:
                 include 'partials/records-list.php';
